@@ -1,6 +1,6 @@
 package com.rest.api.entity;
 
-import com.rest.api.model.OrderStatus;
+import com.rest.api.object.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,9 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Data
 @Builder

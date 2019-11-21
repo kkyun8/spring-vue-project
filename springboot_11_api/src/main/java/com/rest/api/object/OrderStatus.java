@@ -1,10 +1,7 @@
-package com.rest.api.model;
+package com.rest.api.object;
 
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.*;
-import java.util.Date;
 
 @Data
 @Builder

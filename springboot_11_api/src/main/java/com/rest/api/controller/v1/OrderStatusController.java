@@ -1,32 +1,39 @@
-package com.rest.api.contoroller;
+package com.rest.api.controller.v1;
 
 import com.rest.api.entity.OrderStatusEntity;
-import com.rest.api.model.OrderStatus;
+import com.rest.api.object.OrderStatus;
 import com.rest.api.repo.OrderStatusJpaRepository;
 import com.rest.api.service.OrderStatusService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
+@Api(tags = {"1. order_status"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/order_status")
 public class OrderStatusController {
 
-//    Serviceは必要なのか？規模が小さいならいらないでは？
+//   Controller->Service->Repository example
     @NonNull
     private final OrderStatusService orderStatusService;
 
+    @ApiOperation(value = "オーダーの状態マスタすべて", notes = "すべてを表示（@serviceあり）")
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<OrderStatusEntity> findByAll(){
         return this.orderStatusService.findAll();
     }
 
+    @ApiOperation(value = "１つのオーダーの状態マスタ取得", notes = "オーダー状態マスタの１つを表示（@serviceあり）")
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public OrderStatus findById(@PathVariable("id") String id){
@@ -34,21 +41,28 @@ public class OrderStatusController {
     }
 
 
+//    Controller->Repository example
     private final OrderStatusJpaRepository orderStatusJpaRepository;
 
+    @ApiOperation(value = "オーダーの状態マスタすべて", notes = "すべてを表示（@serviceなし）")
     @GetMapping(value = "/no_service")
     public List<OrderStatusEntity> findAllUser() {
         return orderStatusJpaRepository.findAll();
     }
 
-//    @PostMapping(value = "/user")
-//    public User save(@ApiParam(value = "회원아이디", required = true) @RequestParam String uid,
-//                     @ApiParam(value = "회원이름", required = true) @RequestParam String name) {
-//        User user = User.builder()
-//                .uid(uid)
-//                .name(name)
-//                .build();
-//        return userJpaRepo.save(user);
-//    }
+//    string data json 表示
+    @GetMapping(value = "/test/json")
+    @ResponseBody
+    public Hello testJson() {
+        Hello test = new Hello();
+        test.message = "helloworld";
+        return test;
+    }
+
+    @Setter
+    @Getter
+    public static class Hello {
+        private String message;
+    }
 
 }
