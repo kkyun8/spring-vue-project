@@ -1,7 +1,7 @@
 package com.rest.api.repo;
 
 import com.rest.api.entity.OrderStatusEntity;
-import com.rest.api.model.OrderStatus;
+import com.rest.api.object.OrderStatus;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
