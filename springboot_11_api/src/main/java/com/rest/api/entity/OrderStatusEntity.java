@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class OrderStatusEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private long id;
 
     @Column(name = "name")
     private String name;

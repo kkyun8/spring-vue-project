@@ -17,7 +17,7 @@ public class OrderStatusRepositoryImpl implements OrderStatusRepository{
     private final OrderStatusJpaRepository orderStatusJpaRepository;
 
     @Override
-    public Optional<OrderStatus> findById(String id) {
+    public Optional<OrderStatus> findById(long id) {
         return this.orderStatusJpaRepository.findById(id)
                 .map(OrderStatusEntity::toDomainOrderStatus);
     }

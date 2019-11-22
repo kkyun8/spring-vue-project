@@ -7,7 +7,7 @@ import lombok.Data;
 @Builder
 public class OrderStatus {
 
-    private String id;
+    private long id;
     private int orderStatus;
     private String name;
     private String nameKanji;
