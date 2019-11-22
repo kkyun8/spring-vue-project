@@ -23,6 +23,7 @@ public class OrderStatusService {
     }
 
     public List<OrderStatusEntity> findAll() {
+
         return  this.orderStatusRepository.findAll();
     }
 }
