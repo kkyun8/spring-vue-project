@@ -17,7 +17,7 @@ public class OrderStatusService {
     @NonNull
     private final OrderStatusRepository orderStatusRepository;
 
-    public Optional<OrderStatus> findById(String id){
+    public Optional<OrderStatus> findById(long id){
 
         return  this.orderStatusRepository.findById(id);
     }

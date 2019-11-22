@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderStatusRepository {
-    Optional<OrderStatus> findById(String id);
+    Optional<OrderStatus> findById(long id);
 
     List<OrderStatusEntity> findAll();
 }

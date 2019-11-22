@@ -1,6 +1,7 @@
 package com.rest.api.controller.v1;
 
 import com.rest.api.entity.OrderStatusEntity;
+import com.rest.api.exception.COrderStatusNotFoundException;
 import com.rest.api.model.response.CommonResult;
 import com.rest.api.model.response.ListResult;
 import com.rest.api.model.response.SingleResult;
@@ -39,8 +40,8 @@ public class OrderStatusController {
     @ApiOperation(value = "１つのオーダーの状態マスタ取得", notes = "オーダー状態マスタの１つを表示（@serviceあり）")
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public SingleResult<OrderStatusEntity> findById(@PathVariable("id") String id){
-        return responseService.getSingleResult(orderStatusJpaRepository.findById(id).orElseThrow());
+    public SingleResult<OrderStatusEntity> findById(@PathVariable("id") long id) throws Exception {
+        return responseService.getSingleResult(orderStatusJpaRepository.findById(id).orElseThrow(COrderStatusNotFoundException::new));
     }
 
     @ApiOperation(value = "オーダー状態マスタ新規登録")
@@ -57,7 +58,7 @@ public class OrderStatusController {
 
     @ApiOperation(value = "オーダー状態マスタ更新")
     @PutMapping(value = "/{id}")
-    public SingleResult<OrderStatusEntity> modify( @RequestParam String id,
+    public SingleResult<OrderStatusEntity> modify( @RequestParam long id,
             @RequestParam String name, @RequestParam String nameKanji,
             @RequestParam String nameHurigana ) {
         OrderStatusEntity orderStatus = OrderStatusEntity.builder()
@@ -68,7 +69,7 @@ public class OrderStatusController {
 
     @ApiOperation(value = "オーダー状態マスタ削除")
     @DeleteMapping(value = "/{id}")
-    public CommonResult delete(@PathVariable String id) {
+    public CommonResult delete(@PathVariable long id) {
         orderStatusJpaRepository.deleteById(id);
         return responseService.getSuccessResult();
     }
