@@ -1,5 +1,6 @@
 package com.rest.api.advice;
 
+import com.rest.api.advice.exception.CEmailSigninFailedException;
 import com.rest.api.exception.COrderStatusNotFoundException;
 import com.rest.api.model.response.CommonResult;
 import com.rest.api.service.ResponseService;
@@ -29,4 +30,11 @@ public class ExceptionAdvice {
     protected CommonResult orderStatusNotFoundException(HttpServletRequest request, COrderStatusNotFoundException e){
         return responseService.getFailResult();
     }
+
+    //TODO
+//    @ExceptionHandler(CEmailSigninFailedException.class)
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    protected CommonResult emailSignFailed(HttpServletRequest request, CEmailSigninFailedException e) {
+//        return responseService.getFailResult(Integer.valueOf(getMessage("email")))
+//    }
 }
