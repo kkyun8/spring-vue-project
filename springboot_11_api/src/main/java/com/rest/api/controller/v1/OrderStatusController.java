@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(tags = {"1. order_status"})
+@Api(tags = {"test. order_status"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "/v1/order_status")
